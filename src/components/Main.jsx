@@ -41,28 +41,29 @@ const languages = [
 
 
 export default function Main() {
-    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+    const [selected, setSelected] = useState(languages[0]);
 
     return (
-        <main>
-            <h1>Learn Web development</h1>
-
+        <main className="container py-5 text-center">
+            <h1 className="mb-4">Learn Web development</h1>
             {/* Lista dei bottoni */}
-            <div>
-                {languages.map((language) => (
+            <div className="d-flex flex-wrap justify-content-center gap-2 mb-4">
+                {languages.map(lang => (
                     <button
-                        key={language.id}
-                        onClick={() => setSelectedLanguage(language)}
+                        key={lang.id}
+                        className={`btn ${selected.id === lang.id ? "btn-warning" : "btn-primary"}`}
+                        onClick={() => setSelected(lang)}
                     >
-                        {language.title}
+                        {lang.title}
                     </button>
                 ))}
             </div>
-
             {/* Card del linguaggio selezionato */}
-            <div>
-                <h2>{selectedLanguage.title}</h2>
-                <p>{selectedLanguage.description}</p>
+            <div className="card mx-auto" style={{ maxWidth: "600px" }}>
+                <div className="card-body">
+                    <h2 className="card-title">{selected.title}</h2>
+                    <p className="card-text">{selected.description}</p>
+                </div>
             </div>
         </main>
     );
